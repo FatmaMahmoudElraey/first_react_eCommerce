@@ -1,0 +1,33 @@
+.itemTable {
+  // max-width: 100vw !important;
+  display: flex;
+  flex-direction: column;
+  tr {
+    display: flex;
+    flex-direction: row;
+  }
+  td,
+  th {
+    // max-width: 8rem;
+    flex: 1 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  [obj_key="deleted"] {
+    display: none;
+  }
+  textarea {
+    max-width: 100%;
+    height: 100%;
+    resize: none;
+  }
+  button{
+    box-shadow: none;
+  }
+}
+:disabled,
+.disabled {
+  cursor: not-allowed !important;
+}
