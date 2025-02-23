@@ -1,5 +1,6 @@
 import axios from "axios";
-const baseURL = "http://localhost:8000/products";
+import {API_URL} from "../utils/constants"
+const baseURL = `${API_URL}products`;
 
 const getAllProducts = () => axios.get(baseURL);
 const getProductById = (productId) => axios.get(`${baseURL}/${productId}`);

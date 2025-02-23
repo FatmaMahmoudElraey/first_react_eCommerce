@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button, Card, Alert, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaLock } from 'react-icons/fa';
 import Breadcrumb from '../components/MyBreadcrumb'; // Import the Breadcrumb Component
+import { useDispatch, useSelector } from 'react-redux';
+import { getUsersAction } from '../store/userSlice';
 
 export function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getUsersAction());
+    }, []);
+    // unsafe but idc
+    const users = useSelector((state) => state.userSlice.users);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -17,13 +25,27 @@ export function Login() {
             setError('All fields are required');
             return;
         }
-
-        // Dummy authentication (Replace with actual API call)
-        if (email === 'fatma@example.com' && password === 'password123') {
-            navigate('/');
+        const user = users.find((user) => user.email === email && user.password === password)
+        if(user) {
+            localStorage.setItem("user", JSON.stringify(user));
+            if(user.role == "admin") {
+                navigate('/manage');
+                setTimeout(() => window.location.reload(), 500);
+            }else{
+                navigate('/');
+                setTimeout(() => window.location.reload(), 500);
+            }
         } else {
             setError('Invalid email or password');
         }
+
+        // Dummy authentication (Replace with actual API call)
+        // if (email === 'fatma@example.com' && password === 'password123') {
+        //     navigate('/');
+        // } else {
+        //     setError('Invalid email or password');
+        // }
+
     };
 
     return (
@@ -32,7 +54,7 @@ export function Login() {
             <Breadcrumb title="Login" />
 
             {/* Login Card */}
-            <Container className="d-flex justify-content-center align-items-center vh-100 my-5">
+            <Container className="d-flex justify-content-center align-items-center my-5">
                 <Card style={{ width: '70vw', border: 'none' }} className="shadow-lg p-4 rounded-4">
                     <Card.Body>
                         <h3 className="text-center text-danger fw-bold mb-4">Welcome Back</h3>

@@ -36,7 +36,7 @@ export const Hero = () => {
             <h2 className="text-light mb-3">NEW SEASON, SHOP NOW!</h2>
             <p className="text-light mb-4">We are a team of talented designers making furniture  with LOVE</p>
             <div className="d-flex flex-column flex-md-row gap-3">
-              <a href="#about" className="btn-get-started text-light btn btn-danger">Get Started</a>
+              <a onClick={() => window.scrollTo({ top: 1080, behavior: "smooth" })} className="btn-get-started text-light btn btn-danger">Get Started</a>
               <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" className="glightbox btn-watch-video d-flex align-items-center btn btn-outline-light">
                 <i className="bi bi-play-circle me-2"></i>
                 <span>Watch Video</span>

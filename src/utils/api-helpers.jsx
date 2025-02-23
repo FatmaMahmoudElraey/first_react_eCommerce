@@ -1,4 +1,5 @@
 import axios from "axios";
+import { API_URL } from "./constants";
 
 function typecastItem(item) {
   Object.keys(item).forEach((key) => {
@@ -23,43 +24,43 @@ function typecastItem(item) {
 }
 
 export async function fetchItems(endpoint) {
-  const response = await axios.get(`http://localhost:3001/${endpoint}`);
+  const response = await axios.get(`${API_URL}${endpoint}`);
   return response.data.map(typecastItem);
 }
 export async function fetchDeletedItems(endpoint) {
-  const response = await axios.get(`http://localhost:3001/deleted-${endpoint}`);
+  const response = await axios.get(`${API_URL}deleted-${endpoint}`);
   return response.data.map(typecastItem);
 }
 
 export async function fetchItem(endpoint, id) {
-  const response = await axios.get(`http://localhost:3001/${endpoint}/${id}`);
+  const response = await axios.get(`${API_URL}${endpoint}/${id}`);
   return typecastItem(response.data);
 }
 
 export async function postItem(endpoint, item) {
   const response = await axios.post(
-    `http://localhost:3001/${endpoint}`,
+    `${API_URL}${endpoint}`,
     typecastItem(item)
   );
-  return response.status;
+  return response.data;
 }
 
 export async function hardDeleteItem(endpoint, id) {
   const old = await fetchItem(endpoint, id);
-  await axios.post(`http://localhost:3001/deleted-${endpoint}/`, old);
-  await axios.delete(`http://localhost:3001/${endpoint}/${id}`);
+  await axios.post(`${API_URL}deleted-${endpoint}/`, old);
+  await axios.delete(`${API_URL}${endpoint}/${id}`);
 }
 
 export async function updateItem(endpoint, id, item) {
   const response = await axios.patch(
-    `http://localhost:3001/${endpoint}/${id}`,
+    `${API_URL}${endpoint}/${id}`,
     typecastItem(item)
   );
   return typecastItem(response.data);
 }
 
 export async function deleteItem(endpoint, id) {
-  return await updateItem(endpoint, id, { deleted: true });
+  await updateItem(endpoint, id, { deleted: true });
 }
 
 export async function undeleteAllItems(endpoint) {

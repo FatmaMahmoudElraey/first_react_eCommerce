@@ -1,28 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { ProductCard } from "./ProductCard";
+import { useSelector } from "react-redux";
+import Swal from "sweetalert2";
 
 export function Products({ searchQuery }) {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]); 
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [cart, setCart] = useState([]);
-
+  const products = useSelector((state) => state.productSlice.products.filter((product) => !product.deleted && product.quantity > 0 && (!searchQuery || product.name?.toLowerCase().includes(searchQuery?.toLowerCase()))));
   useEffect(() => {
-    fetch("http://localhost:8000/products") 
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data);
-
-        const uniqueCategories = [...new Set(data.map((product) => product.category))];
+        const uniqueCategories = [...new Set(products.map((product) => product.category))];
         setCategories(["All", ...uniqueCategories]); 
-
-        setLoading(false);
-      })
-      .catch((error) => {
-        console.error("Error fetching products:", error);
-        setLoading(false);
-      });
   }, []);
 
   const filteredProducts = products.filter((product) => {
@@ -40,11 +30,14 @@ export function Products({ searchQuery }) {
   // Function to add a product to the cart
   const addToCart = (product) => {
     setCart([...cart, product]);
-    alert(`${product.name} added to cart!`);
+    Swal.fire({
+     text:`${product.name} added to cart!`
+    }
+  );
   };
 
   return (
-    <div className="bg-light p-5 text-center">
+    <div className="bg-light p-5 text-center" id="products">
       {/* Cart Button */}
       <div className="position-absolute top-0 end-0 m-3">
         <button className="btn btn-primary position-relative">

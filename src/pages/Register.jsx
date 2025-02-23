@@ -3,6 +3,8 @@ import { Form, Button, Card, Alert, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaLock, FaUser } from 'react-icons/fa';
 import Breadcrumb from '../components/MyBreadcrumb'; // Import the Breadcrumb Component
+import { useDispatch, useSelector } from 'react-redux';
+import { addUserAction } from '../store/userSlice';
 
 export function Register() {
     const [name, setName] = useState('');
@@ -11,7 +13,8 @@ export function Register() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-
+    const users = useSelector((state) => state.userSlice.users);
+    const dispatch = useDispatch();
     const handleSubmit = (e) => {
         e.preventDefault();
 
@@ -25,10 +28,15 @@ export function Register() {
             return;
         }
 
-        // Dummy registration (Replace with actual API call)
-        console.log('Registered:', { name, email, password });
+        if (users.some((user) => user.email === email)) {
+            setError('Email already exists');
+            return;
+        }
 
+        dispatch(addUserAction({ name, email, password, role: 'user', deleted: false }));
+        localStorage.setItem('user', JSON.stringify({ name, email, password, role: 'user', deleted: false }));
         navigate('/'); // Redirect after successful registration
+        setTimeout(() => window.location.reload(), 500);
     };
 
     return (
@@ -37,7 +45,7 @@ export function Register() {
             <Breadcrumb title="Register" />
 
             {/* Register Card */}
-            <Container className="d-flex justify-content-center align-items-center vh-100 my-5">
+            <Container className="d-flex justify-content-center align-items-center my-5">
                 <Card style={{ width: '70vw', border: 'none' }} className="shadow-lg p-4 rounded-4">
                     <Card.Body>
                         <h3 className="text-center text-danger fw-bold mb-4">Create an Account</h3>

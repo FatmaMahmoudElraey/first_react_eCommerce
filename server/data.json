@@ -4,7 +4,7 @@
       "id": "101",
       "name": "Modern Wooden Chair",
       "price": 120,
-      "quantity": 15,
+      "quantity": 9,
       "image": "../src/img/products/product-1.webp",
       "description": "A sleek and modern wooden chair, perfect for contemporary interiors.",
       "category": "Chairs"
@@ -13,7 +13,7 @@
       "id": "102",
       "name": "Vintage Armchair",
       "price": 200,
-      "quantity": 10,
+      "quantity": 7,
       "image": "../src/img/products/product-2.webp",
       "description": "A vintage-style armchair with plush cushioning and elegant design.",
       "category": "Chairs"
@@ -22,7 +22,7 @@
       "id": "103",
       "name": "Minimalist Chair",
       "price": 80,
-      "quantity": 25,
+      "quantity": 23,
       "image": "../src/img/products/product-3.webp",
       "description": "A minimalist chair with a simple yet stylish design.",
       "category": "Chairs"
@@ -49,7 +49,7 @@
       "id": "106",
       "name": "Outdoor Lounge Chair",
       "price": 150,
-      "quantity": 12,
+      "quantity": 12444,
       "image": "../src/img/products/product-6.webp",
       "description": "A weather-resistant outdoor lounge chair for your patio or garden.",
       "category": "Chairs"
@@ -71,6 +71,215 @@
       "image": "../src/img/products/product-8.webp",
       "description": "A lightweight and portable folding chair, ideal for events and outdoor use.",
       "category": "Chairs"
+    },
+    {
+      "id": "4700",
+      "name": "Froggy Chair",
+      "price": 99999,
+      "quantity": 3,
+      "image": "https://dodo.ac/np/images/thumb/9/9b/Froggy_Chair_%28Green_Frog%29_NL_Model.png/200px-Froggy_Chair_%28Green_Frog%29_NL_Model.png",
+      "description": "a chair; it looks like a frog.",
+      "category": "Chairs"
+    },
+    {
+      "id": "d022",
+      "name": "Desk",
+      "price": 120,
+      "quantity": 0,
+      "image": "https://www.ikea.com/eg/en/images/products/micke-desk-black-brown__0735981_pe740299_s5.jpg",
+      "description": "an ikea desk",
+      "category": "Desks"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "amr",
+      "email": "amr@react",
+      "role": "admin",
+      "password": "1234",
+      "deleted": false
+    },
+    {
+      "id": "2",
+      "name": "fatma",
+      "email": "fatma@react",
+      "role": "admin",
+      "password": "1234"
+    },
+    {
+      "id": "fa54",
+      "name": "new user",
+      "email": "mail@mail",
+      "password": "1234",
+      "role": "user",
+      "deleted": true
+    },
+    {
+      "id": "0bb1",
+      "name": "user",
+      "email": "mail@mail2",
+      "password": "1234",
+      "role": "user",
+      "deleted": true
+    },
+    {
+      "id": "4bb4",
+      "name": "New User",
+      "email": "newmail@mail",
+      "password": "1234",
+      "role": "user",
+      "deleted": false
+    }
+  ],
+  "orders": [
+    {
+      "id": "accf",
+      "user": "1",
+      "items": [
+        {
+          "id": "101",
+          "name": "Modern Wooden Chair",
+          "price": 120,
+          "quantity": 4,
+          "image": "../src/img/products/product-1.webp",
+          "description": "A sleek and modern wooden chair, perfect for contemporary interiors.",
+          "category": "Chairs"
+        }
+      ],
+      "deleted": false
+    },
+    {
+      "id": "b54b",
+      "user": "1",
+      "items": [
+        {
+          "id": "102",
+          "name": "Vintage Armchair",
+          "price": 200,
+          "quantity": 10,
+          "image": "../src/img/products/product-2.webp",
+          "description": "A vintage-style armchair with plush cushioning and elegant design.",
+          "category": "Chairs"
+        }
+      ]
+    },
+    {
+      "id": "d11e",
+      "user": "1",
+      "items": [
+        {
+          "id": "102",
+          "name": "Vintage Armchair",
+          "price": 200,
+          "quantity": 10,
+          "image": "../src/img/products/product-2.webp",
+          "description": "A vintage-style armchair with plush cushioning and elegant design.",
+          "category": "Chairs"
+        }
+      ]
+    },
+    {
+      "id": "1e52",
+      "user": "1",
+      "items": [
+        {
+          "id": "103",
+          "name": "Minimalist Chair",
+          "price": 80,
+          "quantity": 1,
+          "image": "../src/img/products/product-3.webp",
+          "description": "A minimalist chair with a simple yet stylish design.",
+          "category": "Chairs"
+        }
+      ]
+    },
+    {
+      "id": "982e",
+      "user": "1",
+      "items": [
+        {
+          "id": "102",
+          "name": "Vintage Armchair",
+          "price": 200,
+          "quantity": 1,
+          "image": "../src/img/products/product-2.webp",
+          "description": "A vintage-style armchair with plush cushioning and elegant design.",
+          "category": "Chairs"
+        }
+      ]
+    },
+    {
+      "id": "578b",
+      "user": "1",
+      "items": [
+        {
+          "id": "102",
+          "name": "Vintage Armchair",
+          "price": 200,
+          "quantity": 1,
+          "image": "../src/img/products/product-2.webp",
+          "description": "A vintage-style armchair with plush cushioning and elegant design.",
+          "category": "Chairs"
+        },
+        {
+          "id": "103",
+          "name": "Minimalist Chair",
+          "price": 80,
+          "quantity": 1,
+          "image": "../src/img/products/product-3.webp",
+          "description": "A minimalist chair with a simple yet stylish design.",
+          "category": "Chairs"
+        }
+      ]
+    },
+    {
+      "id": "493a",
+      "user": "1",
+      "items": [
+        {
+          "id": "102",
+          "name": "Vintage Armchair",
+          "price": 200,
+          "quantity": 1,
+          "image": "../src/img/products/product-2.webp",
+          "description": "A vintage-style armchair with plush cushioning and elegant design.",
+          "category": "Chairs"
+        },
+        {
+          "id": "101",
+          "name": "Modern Wooden Chair",
+          "price": 120,
+          "quantity": 1,
+          "image": "../src/img/products/product-1.webp",
+          "description": "A sleek and modern wooden chair, perfect for contemporary interiors.",
+          "category": "Chairs"
+        },
+        {
+          "id": "4700",
+          "name": "Froggy Chair",
+          "price": 99999,
+          "quantity": 5,
+          "image": "https://dodo.ac/np/images/thumb/9/9b/Froggy_Chair_%28Green_Frog%29_NL_Model.png/200px-Froggy_Chair_%28Green_Frog%29_NL_Model.png",
+          "description": "a chair; it looks like a frog.",
+          "category": "Chairs"
+        }
+      ]
+    },
+    {
+      "id": "f1b2",
+      "user": "1",
+      "items": [
+        {
+          "id": "d022",
+          "name": "Desk",
+          "price": 120,
+          "quantity": 5,
+          "image": "https://www.ikea.com/eg/en/images/products/micke-desk-black-brown__0735981_pe740299_s5.jpg",
+          "description": "an ikea desk",
+          "category": "Desks"
+        }
+      ]
     }
   ]
 }

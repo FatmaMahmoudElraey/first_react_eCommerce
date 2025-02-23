@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Nav, Navbar, Form, FormControl, Button } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -9,10 +9,13 @@ export function Header({ onSearch }) {
   const [searchQuery, setSearchQuery] = useState("");
 
   // Example user object (Replace with actual user authentication logic)
-  const user = {
-    name: "Fatma Mahmoud",
-    isAuthenticated: true, // Assume the user is logged in
-  };
+  const user = JSON.parse(localStorage.getItem("user"));
+  
+  useEffect(() => {
+    if(user) {
+      // console.log(user);
+    }
+  },[user])
 
   const handleSearch = (e) => {
     e.preventDefault(); // Prevent form submission
@@ -20,13 +23,13 @@ export function Header({ onSearch }) {
   };
 
   return (
-    <Navbar expand="lg" className="navbar navbar-dark bg-dark fixed-top">
+    <Navbar expand="lg" className="navbar navbar-dark bg-dark sticky-top">
       <Container>
         <Navbar.Brand as={NavLink} to="/" className="fw-bold text-light">
           FAAM
         </Navbar.Brand>
 
-        <div className="d-flex flex-column flex-lg-row mx-auto w-lg-25 justify-content-lg-center">
+        <div className="d-none flex-column flex-lg-row mx-auto w-lg-25 justify-content-lg-center">
           <Form className="d-flex w-100 w-lg-auto text-light" onSubmit={handleSearch}>
             <FormControl
               type="search"
@@ -66,16 +69,16 @@ export function Header({ onSearch }) {
             >
               Shop
             </NavLink>
-            <NavLink
+            {user && user.role === "admin" && <NavLink
               className={({ isActive }) =>
                 isActive
                   ? "nav-item nav-link text-danger border-bottom border-danger mx-lg-3"
                   : "nav-item nav-link text-light mx-lg-3"
               }
-              to="/products"
+              to="/manage"
             >
-              Products
-            </NavLink>
+              Admin Dashboard
+            </NavLink>}
 
             {/* Cart Icon */}
             <NavLink to="/cart" className="nav-item nav-link text-light mx-lg-3">
@@ -83,16 +86,20 @@ export function Header({ onSearch }) {
               <span className="badge bg-danger ms-1">{cart.length}</span>
             </NavLink>
 
-            {user.isAuthenticated ? (
+            {user ? (
               <>
                 {/* Profile Icon with Username */}
-                <NavLink to="/profile" className="nav-item nav-link text-light mx-lg-3 d-flex align-items-center">
+                <NavLink to={"/profile"} className="nav-item nav-link text-light mx-lg-3 d-flex align-items-center">
                   <i className="bi bi-person-circle me-1"></i>
                   {user.name}
                 </NavLink>
 
                 {/* Logout Button */}
-                <Button variant="outline-danger" className="ms-lg-3 fw-bold">
+                <Button onClick={() => {
+                  localStorage.removeItem("user")
+                  localStorage.removeItem("cart")
+                  setTimeout(() => window.location.reload(), 500);
+                  }} variant="outline-danger" className="ms-lg-3 fw-bold">
                   <NavLink to="/login" >
                     Logout
                   </NavLink>

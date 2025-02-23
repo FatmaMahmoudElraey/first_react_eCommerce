@@ -43,7 +43,7 @@ export function ProductCard({ product }) {
           <p className="card-text text-muted fw-semibold">${product.price}</p>
           <span className="badge bg-danger mb-2">{product.category}</span>
           <p className="text-secondary small">
-            {showMore ? product.description : `${product.description.substring(0, 50)}...`}
+            {showMore ? product?.description : `${product?.description?.substring(0, 50)}...`}
           </p>
           <button
             className="btn btn-link text-decoration-none"

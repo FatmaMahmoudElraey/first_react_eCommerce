@@ -3,9 +3,10 @@ import { useCart } from "../components/CartContext"; // Import the useCart hook
 import MyBreadcrumb from "../components/MyBreadcrumb";
 
 export function Cart() {
-  const { cart, removeFromCart, updateQuantity } = useCart();
+  const { cart, removeFromCart, updateQuantity, checkOut } = useCart();
 
   const totalPrice = cart.reduce((total, product) => total + product.price * product.quantity, 0);
+  
 
   return (
     <>
@@ -71,7 +72,7 @@ export function Cart() {
                 <h2 className="text-danger fw-bold display-4" style={{ fontFamily: "cursive" }}>
                   ${totalPrice.toFixed(2)}
                 </h2>
-                <Button className="mt-3 bg-danger fw-bold px-4 py-2">
+                <Button className="mt-3 bg-danger fw-bold px-4 py-2" onClick={checkOut}>
                   Buy Now
                 </Button>
               </Card.Body>
